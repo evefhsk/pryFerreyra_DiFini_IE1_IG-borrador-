@@ -3,28 +3,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package autogestionestudiantil;
-public abstract class PersonaAcademica 
+
+public class Materia 
 {
     private String nombre;
-    private String legajo;
+    private String codigo;
+    private int cuatrimestre;
+    private int anio; 
 
-    public PersonaAcademica(String nombre, String legajo) 
+    public Materia (String nombre, String codigo,int cuatrimestre, int anio ) 
     {
         this.nombre = nombre;
-        this.legajo = legajo;
+        this.codigo = codigo;
+        this.cuatrimestre = cuatrimestre;
+        this.anio = anio;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getLegajo() {
-        return legajo;
+    public String getCodigo() {
+        return codigo;
     }
     
-    public void setNombre(String nombre) 
+    public int getCuatrimestre() {
+        return cuatrimestre;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+    
+   
+    public void setCodigo(String codigo) 
     {
-        if (nombre != null && !nombre.isEmpty()) 
+        
+        if (codigo != null && !nombre.isEmpty()) 
         {
             this.nombre = nombre;
         } 
@@ -47,4 +62,6 @@ public abstract class PersonaAcademica
     }
     
     public abstract void mostrarResumen();
+    
+    
 }
