@@ -8,6 +8,17 @@ package autogestionestudiantil;
  *
  * @author ferre
  */
-public interface Evaluable {
+public interface Evaluable 
+{
+    String getCondicion();
+    double getPromedio();
+    boolean estaAprobada();
     
+    //Le pregunte a la ia como implementarlo: "Como se utiliza el default en java""
+    default void mostrarEstadoAcademico()
+    {
+        System.out.println("Condicion: " + getCondicion());
+        System.out.println("Promedio: " + getPromedio());
+    }
+            
 }
