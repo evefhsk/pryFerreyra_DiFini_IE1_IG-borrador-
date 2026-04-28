@@ -4,15 +4,19 @@
  */
 package autogestionestudiantil;
 
-public class Materia 
+import java.util.HashSet;
+
+public class Materia implements Consultable
 {
+
     private String nombre;
     private String codigo;
     private int cuatrimestre;
-    private int anio; 
+    private int anio;
 
-    public Materia (String nombre, String codigo,int cuatrimestre, int anio ) 
-    {
+    private static HashSet<String> codigosUsados = new HashSet<>();
+
+    public Materia(String nombre, String codigo, int cuatrimestre, int anio) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.cuatrimestre = cuatrimestre;
@@ -26,7 +30,7 @@ public class Materia
     public String getCodigo() {
         return codigo;
     }
-    
+
     public int getCuatrimestre() {
         return cuatrimestre;
     }
@@ -34,34 +38,23 @@ public class Materia
     public int getAnio() {
         return anio;
     }
-    
-   
-    public void setCodigo(String codigo) 
-    {
-        
-        if (codigo != null && !nombre.isEmpty()) 
-        {
-            this.nombre = nombre;
-        } 
-        else 
-        {
-            System.out.println("El nombre no puede estar vacio");
+
+    public void setCodigo(String codigo) {
+
+        if (codigosUsados.contains(codigo)) {
+            System.out.println("Error: el código ya existe.");
+        } else {
+            this.codigo = codigo;
+            codigosUsados.add(codigo);
         }
     }
 
-    public void setLegajo(String legajo) 
-    {
-        if (legajo != null && !legajo.isEmpty()) 
-        {
-            this.legajo = legajo;
-        } 
-        else 
-        {
-            System.out.println("El legajo no puede estar vacio");
+    public void setCuatrimestre(int cuatrimestre) {
+
+        if (cuatrimestre == 1 || cuatrimestre == 2) {
+            this.cuatrimestre = cuatrimestre;
+        } else {
+            System.out.println("Error: el cuatrimestre debe ser 1 o 2.");
         }
     }
-    
-    public abstract void mostrarResumen();
-    
-    
 }
