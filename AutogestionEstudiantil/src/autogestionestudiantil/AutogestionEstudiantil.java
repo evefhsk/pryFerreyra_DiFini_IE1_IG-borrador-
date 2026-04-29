@@ -5,10 +5,18 @@ public class AutogestionEstudiantil {
 
     public static void main(String[] args) 
     {
-
         Scanner sc = new Scanner(System.in);
-        Estudiante alumno = new Estudiante("Ana Garcia", "22001", "Interfaz Grafica",
-                2023);
+        /*
+        Estudiante alumno = new Estudiante("Ana Garcia", "22001", "Interfaz Grafica",2023);
+        */
+        Materia m = new Materia("Matematica", "22033", 1, 2004);
+        System.out.println("\n======");
+        Materia a = new Materia("Lengua", "22033", 1, 2004);
+        m.mostrarResumen(); 
+        System.out.println("\n======"); 
+        a.mostrarResumen(); 
+        
+        /*
         int opcion;
         do {
             System.out.println("\n=== MENU PRINCIPAL ===");
@@ -34,6 +42,6 @@ public class AutogestionEstudiantil {
             }
 
         } while (opcion != 0); 
-        
+        */
     }
 }

@@ -3,12 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package autogestionestudiantil;
-
 import java.util.HashSet;
-
 public class Materia implements Consultable
 {
-
     private String nombre;
     private String codigo;
     private int cuatrimestre;
@@ -16,12 +13,35 @@ public class Materia implements Consultable
 
     private static HashSet<String> codigosUsados = new HashSet<>();
 
-    public Materia(String nombre, String codigo, int cuatrimestre, int anio) {
+    public Materia(String nombre, String codigo, int cuatrimestre, int anio) 
+    {
         this.nombre = nombre;
-        this.codigo = codigo;
-        this.cuatrimestre = cuatrimestre;
+        setCodigo(codigo);
+        setCuatrimestre(cuatrimestre);
         this.anio = anio;
     }
+    
+    @Override
+    public void mostrarResumen() 
+    {
+        setCuatrimestre(cuatrimestre);
+
+        System.out.println("Materia: " + nombre);
+        System.out.println("Codigo: " + codigo);
+
+        if (cuatrimestre == 1 || cuatrimestre == 2) 
+        {
+            System.out.println("Cuatrimestre: " + cuatrimestre);
+        } 
+        else 
+        {
+            System.out.println("Cuatrimestre inválido");
+        }
+
+        System.out.println("Año: " + anio);
+    }
+    
+    
 
     public String getNombre() {
         return nombre;
@@ -41,20 +61,29 @@ public class Materia implements Consultable
 
     public void setCodigo(String codigo) {
 
-        if (codigosUsados.contains(codigo)) {
-            System.out.println("Error: el código ya existe.");
-        } else {
+        if (codigosUsados.contains(codigo)) 
+        {
+            System.out.println("Esta materia, " + nombre + " Tiene un código que ya existe.");
+        } 
+        else 
+        {
             this.codigo = codigo;
             codigosUsados.add(codigo);
         }
     }
 
-    public void setCuatrimestre(int cuatrimestre) {
-
-        if (cuatrimestre == 1 || cuatrimestre == 2) {
+ 
+    public void setCuatrimestre(int cuatrimestre) 
+    {
+        if (cuatrimestre == 1 || cuatrimestre == 2) 
+        {
             this.cuatrimestre = cuatrimestre;
-        } else {
+        } 
+        else 
+        {
             System.out.println("Error: el cuatrimestre debe ser 1 o 2.");
         }
     }
+    
+    
 }
