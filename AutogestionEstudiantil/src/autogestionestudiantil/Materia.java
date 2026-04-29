@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package autogestionestudiantil;
 import java.util.HashSet;
 public class Materia implements Consultable
@@ -24,25 +20,24 @@ public class Materia implements Consultable
     @Override
     public void mostrarResumen() 
     {
-        setCuatrimestre(cuatrimestre);
-
+        System.out.println("=== RESUMEN DE MATERIA ===");
+        
         System.out.println("Materia: " + nombre);
-        System.out.println("Codigo: " + codigo);
+        System.out.println("Año: " + anio);
 
-        if (cuatrimestre == 1 || cuatrimestre == 2) 
-        {
-            System.out.println("Cuatrimestre: " + cuatrimestre);
-        } 
-        else 
-        {
-            System.out.println("Cuatrimestre inválido");
+        if (codigo != null) {
+            System.out.println("Código: " + codigo);
+        } else {
+            System.out.println("Código inválido o repetido");
         }
 
-        System.out.println("Año: " + anio);
+        if (cuatrimestre == 1 || cuatrimestre == 2) {
+            System.out.println("Cuatrimestre: " + cuatrimestre);
+        } else {
+            System.out.println("Cuatrimestre inválido");
+        }
     }
-    
-    
-
+   
     public String getNombre() {
         return nombre;
     }
@@ -63,7 +58,7 @@ public class Materia implements Consultable
 
         if (codigosUsados.contains(codigo)) 
         {
-            System.out.println("Esta materia, " + nombre + " Tiene un código que ya existe.");
+            this.codigo = null;
         } 
         else 
         {
@@ -80,10 +75,11 @@ public class Materia implements Consultable
             this.cuatrimestre = cuatrimestre;
         } 
         else 
-        {
-            System.out.println("Error: el cuatrimestre debe ser 1 o 2.");
+        { 
+            this.cuatrimestre =  -1; 
         }
     }
     
     
 }
+  

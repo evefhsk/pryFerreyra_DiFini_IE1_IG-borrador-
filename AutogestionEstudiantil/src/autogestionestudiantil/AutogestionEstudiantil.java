@@ -9,12 +9,13 @@ public class AutogestionEstudiantil {
         /*
         Estudiante alumno = new Estudiante("Ana Garcia", "22001", "Interfaz Grafica",2023);
         */
-        Materia m = new Materia("Matematica", "22033", 1, 2004);
-        System.out.println("\n======");
+        //Objetos para la clase Materia
+        Materia m = new Materia("Matematica", "22033", 4, 2004);
         Materia a = new Materia("Lengua", "22033", 1, 2004);
         m.mostrarResumen(); 
-        System.out.println("\n======"); 
+        System.out.println("\n======");  
         a.mostrarResumen(); 
+
         
         /*
         int opcion;
