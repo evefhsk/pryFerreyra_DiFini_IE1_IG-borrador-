@@ -6,7 +6,7 @@ package autogestionestudiantil;
 
 /**
  *
- * @author ferre
+ * @author eve
  */
 import java.util.ArrayList;
 

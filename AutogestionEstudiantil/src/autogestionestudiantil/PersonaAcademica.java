@@ -1,11 +1,11 @@
 package autogestionestudiantil;
-public abstract class PersonaAcademica 
-{
+
+public abstract class PersonaAcademica {
+
     private String nombre;
     private String legajo;
 
-    public PersonaAcademica(String nombre, String legajo) 
-    {
+    public PersonaAcademica(String nombre, String legajo) {
         this.nombre = nombre;
         this.legajo = legajo;
     }
@@ -17,30 +17,22 @@ public abstract class PersonaAcademica
     public String getLegajo() {
         return legajo;
     }
-    
-    public void setNombre(String nombre) 
-    {
-        if (nombre != null && !nombre.isEmpty()) 
-        {
+
+    public void setNombre(String nombre) {
+        if (nombre != null && !nombre.isEmpty()) {
             this.nombre = nombre;
-        } 
-        else 
-        {
+        } else {
             System.out.println("El nombre no puede estar vacio");
         }
     }
 
-    public void setLegajo(String legajo) 
-    {
-        if (legajo != null && !legajo.isEmpty()) 
-        {
+    public void setLegajo(String legajo) {
+        if (legajo != null && !legajo.isEmpty()) {
             this.legajo = legajo;
-        } 
-        else 
-        {
+        } else {
             System.out.println("El legajo no puede estar vacio");
         }
     }
-    
+
     public abstract void mostrarResumen();
 }

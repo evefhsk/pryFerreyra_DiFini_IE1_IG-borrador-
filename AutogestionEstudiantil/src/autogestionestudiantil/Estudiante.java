@@ -6,7 +6,7 @@ package autogestionestudiantil;
 
 /**
  *
- * @author ferre
+ * @author Eve
  */
 
 
@@ -117,6 +117,9 @@ public class Estudiante extends PersonaAcademica implements Consultable {
         System.out.println("Carrera: " + carrera);
         System.out.println("Año de ingreso: " + anioIngreso);
         System.out.println("Promedio general: " + getPromedioGeneral());
+        
+        
+        
     }
 }
   
