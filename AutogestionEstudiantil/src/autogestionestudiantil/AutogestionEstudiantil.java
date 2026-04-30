@@ -37,7 +37,7 @@ public class AutogestionEstudiantil {
                 case 1:
                     alumno.mostrarResumen();
                 case 2:
-                   
+                   menuMaterias(sc);
                 case 0:
                     System.out.println("Hasta luego!");
                 default: 
@@ -47,7 +47,9 @@ public class AutogestionEstudiantil {
         } while (opcion != 0);         
     }
     
-    public static void menuMaterias(Scanner sc) 
+   
+
+    private static void menuMaterias(Scanner sc) 
     {
         int opcionMateria;
 
@@ -106,5 +108,7 @@ public class AutogestionEstudiantil {
 
         } while (opcionMateria != 0);
     }
+
+  
     
 }
