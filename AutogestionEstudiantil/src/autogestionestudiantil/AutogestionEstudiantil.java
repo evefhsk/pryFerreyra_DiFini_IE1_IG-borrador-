@@ -6,7 +6,8 @@ public class AutogestionEstudiantil {
     public static void main(String[] args) 
     {
         Scanner sc = new Scanner(System.in);
-
+        Estudiante alumno = new Estudiante("Ana Garcia", "22001", "Interfaz Grafica",
+2023);
         //Objetos de prueba para la clase Materia
         /*
         Materia m = new Materia("Matematica", "22033", 4, 2004);
@@ -15,6 +16,7 @@ public class AutogestionEstudiantil {
         System.out.println("\n======");  
         a.mostrarResumen(); 
         */
+        
         
         int opcion;
         do {
@@ -35,7 +37,7 @@ public class AutogestionEstudiantil {
                 case 1:
                     alumno.mostrarResumen();
                 case 2:
-                    menuMaterias(alumno, sc);
+                   
                 case 0:
                     System.out.println("Hasta luego!");
                 default: 

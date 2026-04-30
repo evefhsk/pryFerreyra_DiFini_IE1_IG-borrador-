@@ -7,6 +7,8 @@ package autogestionestudiantil;
 /**
  *
  * @author ferre
+ */
+
 
 import java.util.ArrayList;
 
@@ -117,7 +119,7 @@ public class Estudiante extends PersonaAcademica implements Consultable {
         System.out.println("Promedio general: " + getPromedioGeneral());
     }
 }
-  */
+  
 
 
     
