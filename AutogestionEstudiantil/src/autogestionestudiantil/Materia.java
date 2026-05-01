@@ -21,7 +21,7 @@ public class Materia implements Consultable
     public void mostrarResumen() 
     {
         System.out.println("=== RESUMEN DE MATERIA ===");
-        
+      
         System.out.println("Materia: " + nombre);
         System.out.println("Año: " + anio);
 
