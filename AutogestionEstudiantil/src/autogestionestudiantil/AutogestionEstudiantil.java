@@ -1,28 +1,25 @@
 package autogestionestudiantil;
+
 import java.util.Scanner;
 
-public class AutogestionEstudiantil 
-{
-    public static void main(String[] args) 
-    {
+public class AutogestionEstudiantil {
+
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Estudiante alumno = new Estudiante("Ana Garcia", "22001", "Interfaz Grafica", 2023);
 
-        // Objetos de prueba para la clase Materia
+        // Materias de prueba
+        /*
         Materia m = new Materia("Matematica", "22033", 1, 2024);
         Materia a = new Materia("Lengua", "22034", 2, 2024);
 
-        //Carga estos objetos en la lista de materias inscriptas
         alumno.inscribirse(m);
-        alumno.inscribirse(a); 
-
-        //Muestro esos objetos
-        m.mostrarResumen();
-        System.out.println("\n======");
-        a.mostrarResumen();
-
-        //Menu principal
+        alumno.inscribirse(a);
+        */
+        
+        //Menú principal
         int opcion;
+
         do {
             System.out.println("\n=== MENU PRINCIPAL ===");
             System.out.println("1. Ver perfil");
@@ -33,7 +30,14 @@ public class AutogestionEstudiantil
             System.out.println("0. Salir");
             System.out.println("-------------");
 
-            System.out.print("Opcion: ");
+            System.out.print("Opción: ");
+
+            while (!sc.hasNextInt()) {
+                System.out.println("Opción inválida. Intente nuevamente.");
+                sc.nextLine();
+                System.out.print("Opción: ");
+            }
+
             opcion = sc.nextInt();
             sc.nextLine();
 
@@ -41,13 +45,10 @@ public class AutogestionEstudiantil
             {
                 case 1:
                     System.out.println("PERFIL DE ALUMNO:");
-                    
-                    //Llama al método verPerfil usando el scanner
                     verPerfil(alumno, sc);
                     break;
 
                 case 2:
-                    //Llama al método menuMaterias y se abre un submenú
                     menuMaterias(alumno, sc);
                     break;
 
@@ -68,7 +69,7 @@ public class AutogestionEstudiantil
                     break;
 
                 default:
-                    System.out.println("Opción invalida. Intente nuevamente.");
+                    System.out.println("Opción inválida.");
                     break;
             }
 
@@ -77,10 +78,19 @@ public class AutogestionEstudiantil
         sc.close();
     }
 
-    //Opcion 2: Gestion de materias (SubMenu)
+    //Opcion 1 menu principal: verPerfil
+    public static void verPerfil(Estudiante alumno, Scanner sc) {
+        alumno.mostrarResumen();
+
+        System.out.println("Presione ENTER para volver...");
+        sc.nextLine();
+    }
+
+    //Submenu: Gestión de materias
     private static void menuMaterias(Estudiante alumno, Scanner sc) 
     {
         int opcionMateria;
+
         do {
             System.out.println("\n=== GESTIÓN DE MATERIAS ===");
             System.out.println("1. Inscribir materia");
@@ -91,6 +101,14 @@ public class AutogestionEstudiantil
             System.out.println("-------------");
 
             System.out.print("Opción: ");
+
+            while (!sc.hasNextInt()) 
+            {
+                System.out.println("Opción inválida. Intente nuevamente.");
+                sc.nextLine();
+                System.out.print("Opción: ");
+            }
+
             opcionMateria = sc.nextInt();
             sc.nextLine();
 
@@ -106,14 +124,14 @@ public class AutogestionEstudiantil
                     System.out.print("CODIGO: ");
                     String codigo = sc.nextLine();
 
-                    // Validación carácteres del código
+                    // Validación longitud código
                     if (codigo.length() < 3 || codigo.length() > 10) 
                     {
                         System.out.println("Error: El código debe tener entre 3 y 10 caracteres.");
                         break;
                     }
 
-                    //Validación de código repetido
+                    // Validación código repetido
                     if (alumno.getInscripcion(codigo) != null) 
                     {
                         System.out.println("Error: Ya estás inscripto en una materia con ese código.");
@@ -123,7 +141,7 @@ public class AutogestionEstudiantil
                     System.out.print("CUATRIMESTRE: ");
                     int cuatrimestre = sc.nextInt();
 
-                    //Validación de número de cuatrimestre
+                    // Validación cuatrimestre
                     if (cuatrimestre != 1 && cuatrimestre != 2) 
                     {
                         System.out.println("Error: El cuatrimestre debe ser 1 o 2.");
@@ -135,11 +153,9 @@ public class AutogestionEstudiantil
                     int anio = sc.nextInt();
                     sc.nextLine();
 
-                    //Crea variable para guardar la nueva materia desde la clase Materia
                     Materia nuevaMateria = new Materia(nombre, codigo, cuatrimestre, anio);
                     alumno.inscribirse(nuevaMateria);
-                    sc.nextLine(); 
-                    
+
                     System.out.println("Materia registrada correctamente:");
                     nuevaMateria.mostrarResumen();
 
@@ -152,7 +168,6 @@ public class AutogestionEstudiantil
                     System.out.print("Ingrese el código de la materia: ");
                     String codigoBaja = sc.nextLine();
 
-                    //Elimina la materia según el código 
                     if (alumno.getInscripcion(codigoBaja) != null) 
                     {
                         alumno.darDeBaja(codigoBaja);
@@ -166,13 +181,17 @@ public class AutogestionEstudiantil
                     break;
 
                 case 3:
-                    //Muestra los datos de las materias con lo guardado en las clases InscripcionMateria y Materia
-                    if (alumno.getMaterias().isEmpty()) {
+
+                    if (alumno.getMaterias().isEmpty()) 
+                    {
                         System.out.println("No hay materias inscriptas.");
-                    } else {
+                    } 
+                    else 
+                    {
                         System.out.println("=== MATERIAS INSCRIPTAS ===");
 
-                        for (InscripcionMateria insc : alumno.getMaterias()) {
+                        for (InscripcionMateria insc : alumno.getMaterias()) 
+                        {
                             Materia mat = insc.getMateria();
 
                             System.out.println("Materia: " + mat.getNombre());
@@ -186,13 +205,42 @@ public class AutogestionEstudiantil
                         }
                     }
 
-                    break; 
+                    break;
 
                 case 4:
 
-                    System.out.println("Buscar materias...");
-                    System.out.print("Ingrese código o nombre: ");
-                    
+                    System.out.println("Buscar materia por:");
+                    System.out.println("1. Código");
+                    System.out.println("2. Nombre");
+                    System.out.print("Opción: ");
+
+                    while (!sc.hasNextInt()) 
+                    {
+                        System.out.println("Opción inválida. Intente nuevamente.");
+                        sc.nextLine();
+                        System.out.print("Opción: ");
+                    }
+
+                    int tipoBusqueda = sc.nextInt();
+                    sc.nextLine();
+
+                    if (tipoBusqueda == 1) 
+                    {
+                        System.out.print("Ingrese código: ");
+                        String codigoBusqueda = sc.nextLine();
+                        buscarMateria(alumno, codigoBusqueda, true);
+                    } 
+                    else if (tipoBusqueda == 2) 
+                    {
+                        System.out.print("Ingrese nombre: ");
+                        String nombreBusqueda = sc.nextLine();
+                        buscarMateria(alumno, nombreBusqueda);
+                    } 
+                    else 
+                    {
+                        System.out.println("Opción inválida.");
+                    }
+
                     break;
 
                 case 0:
@@ -209,12 +257,60 @@ public class AutogestionEstudiantil
         } while (opcionMateria != 0);
     }
 
-    // Eve, Opcion 1: Ver perfil
-    public static void verPerfil(Estudiante alumno, Scanner sc) 
-    {
-        alumno.mostrarResumen();
+    //Buscar materia por nombre 
+    public static void buscarMateria(Estudiante alumno, String nombre) {
+        boolean encontrada = false;
 
-        System.out.println("Presione ENTER para volver...");
-        sc.nextLine();
+        for (InscripcionMateria insc : alumno.getMaterias()) {
+ 
+            if (insc.getMateria().getNombre().toLowerCase().contains(nombre.toLowerCase().trim())) {
+                Materia mat = insc.getMateria();
+
+                System.out.println("Materia encontrada:");
+                System.out.println("Materia: " + mat.getNombre());
+                System.out.println("Código: " + mat.getCodigo());
+                System.out.println("Cuatrimestre: " + mat.getCuatrimestre());
+                System.out.println("Año: " + mat.getAnio());
+                System.out.println("Asistencia: " + insc.getPorcentajeAsistencia() + "%");
+                System.out.println("Promedio: " + insc.getPromedio());
+                System.out.println("Condición: " + insc.getCondicion());
+                System.out.println("----------------------");
+
+                encontrada = true;
+            }
+        }
+
+        if (!encontrada) {
+            System.out.println("Materia no encontrada.");
+        }
     }
-} 
+
+//Buscar materia por código (búsqueda parcial)
+    public static void buscarMateria(Estudiante alumno, String codigo, boolean porCodigo) {
+        boolean encontrada = false;
+
+        for (InscripcionMateria insc : alumno.getMaterias()) {
+            // Verifica si el código ingresado está contenido en el código de la materia
+            if (insc.getMateria().getCodigo().toLowerCase().contains(codigo.toLowerCase().trim())) {
+                Materia mat = insc.getMateria();
+
+                System.out.println("Materia encontrada:");
+                System.out.println("Materia: " + mat.getNombre());
+                System.out.println("Código: " + mat.getCodigo());
+                System.out.println("Cuatrimestre: " + mat.getCuatrimestre());
+                System.out.println("Año: " + mat.getAnio());
+                System.out.println("Asistencia: " + insc.getPorcentajeAsistencia() + "%");
+                System.out.println("Promedio: " + insc.getPromedio());
+                System.out.println("Condición: " + insc.getCondicion());
+                System.out.println("----------------------");
+
+                encontrada = true;
+            }
+        }
+
+        if (!encontrada) {
+            System.out.println("Materia no encontrada.");
+        }
+    }
+}
+ 

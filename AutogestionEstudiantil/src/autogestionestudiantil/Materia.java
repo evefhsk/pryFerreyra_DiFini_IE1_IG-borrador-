@@ -1,7 +1,9 @@
 package autogestionestudiantil;
+
 import java.util.HashSet;
-public class Materia implements Consultable
-{
+
+public class Materia implements Consultable {
+
     private String nombre;
     private String codigo;
     private int cuatrimestre;
@@ -9,54 +11,75 @@ public class Materia implements Consultable
 
     private static HashSet<String> codigosUsados = new HashSet<>();
 
-    public Materia(String nombre, String codigo, int cuatrimestre, int anio) 
-    {
-        this.nombre = nombre;
+    public Materia(String nombre, String codigo, int cuatrimestre, int anio) {
+        setNombre(nombre);
         setCodigo(codigo);
         setCuatrimestre(cuatrimestre);
-        this.anio = anio;
+        setAnio(anio);
     }
-    
+
     @Override
     public void mostrarResumen() 
     {
         System.out.println("=== RESUMEN DE MATERIA ===");
-      
+
         System.out.println("Materia: " + nombre);
         System.out.println("Año: " + anio);
 
-        if (codigo != null) {
+        if (codigo != null) 
+        {
             System.out.println("Código: " + codigo);
-        } else {
+        } 
+        else 
+        {
             System.out.println("Código inválido o repetido");
         }
 
-        if (cuatrimestre == 1 || cuatrimestre == 2) {
+        if (cuatrimestre == 1 || cuatrimestre == 2) 
+        {
             System.out.println("Cuatrimestre: " + cuatrimestre);
-        } else {
+        } 
+        else 
+        {
             System.out.println("Cuatrimestre inválido");
         }
     }
-   
-    public String getNombre() {
+
+    // GETTERS
+    public String getNombre() 
+    {
         return nombre;
     }
 
-    public String getCodigo() {
+    public String getCodigo() 
+    {
         return codigo;
     }
 
-    public int getCuatrimestre() {
+    public int getCuatrimestre() 
+    {
         return cuatrimestre;
     }
 
-    public int getAnio() {
+    public int getAnio() 
+    {
         return anio;
     }
 
-    public void setCodigo(String codigo) {
+    // SETTERS CON VALIDACIÓN
+    public void setNombre(String nombre) {
+        if (nombre != null && !nombre.isEmpty()) 
+        {
+            this.nombre = nombre;
+        } 
+        else 
+        {
+            this.nombre = "Sin nombre";
+        }
+    }
 
-        if (codigosUsados.contains(codigo)) 
+    public void setCodigo(String codigo) {
+        if (codigo == null || codigo.isEmpty() || codigosUsados.contains(codigo)) 
         {
             this.codigo = null;
         } 
@@ -67,7 +90,6 @@ public class Materia implements Consultable
         }
     }
 
- 
     public void setCuatrimestre(int cuatrimestre) 
     {
         if (cuatrimestre == 1 || cuatrimestre == 2) 
@@ -75,11 +97,20 @@ public class Materia implements Consultable
             this.cuatrimestre = cuatrimestre;
         } 
         else 
-        { 
-            this.cuatrimestre =  -1; 
+        {
+            this.cuatrimestre = -1;
         }
     }
-    
-    
-}
-  
+
+    public void setAnio(int anio) 
+    {
+        if (anio > 0) 
+        {
+            this.anio = anio;
+        } 
+        else 
+        {
+            this.anio = -1;
+        }
+    }
+} 
